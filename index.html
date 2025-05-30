@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rakshit | Creative Technologist</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
     :root {
-      --bg-color: #0e0e0e;
-      --card-bg: #1a1a1a;
+      --bg: #0e0e0e;
+      --card: #1a1a1a;
       --accent: #00ffc8;
+      --text: #ffffff;
+      --muted: #999;
     }
 
     * {
@@ -19,60 +20,49 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
-      color: white;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
-      height: 100%;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
+      line-height: 1.6;
     }
 
     header {
       text-align: center;
-      padding: 140px 20px 80px;
+      padding: 120px 20px 60px;
     }
 
     header h1 {
       font-size: 3rem;
-      margin-bottom: 10px;
+      color: var(--accent);
     }
 
     header p {
       font-size: 1.2rem;
-      color: #aaa;
+      color: var(--muted);
+      margin-top: 10px;
     }
 
-    .skills {
-      display: flex;
-      justify-content: center;
+    section.skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 30px;
-      flex-wrap: wrap;
       padding: 60px 20px;
-      background-color: rgba(255, 255, 255, 0.02);
+      max-width: 1000px;
+      margin: auto;
     }
 
     .card {
-      background: var(--card-bg);
+      background: var(--card);
       padding: 30px;
-      width: 280px;
       border-radius: 16px;
-      text-align: center;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: transform 0.3s ease;
-      z-index: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 255, 200, 0.1);
     }
 
     .card h3 {
@@ -80,173 +70,98 @@
       margin-bottom: 10px;
     }
 
-    .projects {
-      padding: 80px 20px;
-      background-color: #111;
+    section.projects {
+      padding: 60px 20px;
+      background: #111;
       text-align: center;
     }
 
     .projects h2 {
       font-size: 2rem;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
-    .swiper {
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
       max-width: 1000px;
       margin: auto;
     }
 
-    .swiper-slide {
-      background: var(--card-bg);
+    .project-card {
+      background: var(--card);
       border-radius: 12px;
       padding: 20px;
-      text-align: center;
-    }
-
-    .swiper-slide img {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .swiper-pagination {
-      margin-top: 20px;
+      height: 200px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #333;
     }
 
     footer {
       text-align: center;
       padding: 40px 20px;
-      background-color: #0d0d0d;
+      background-color: #0c0c0c;
       color: #777;
       font-size: 0.9rem;
+    }
+
+    @media(max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .project-card {
+        height: 150px;
+      }
     }
   </style>
 </head>
 <body>
 
-<canvas id="bg"></canvas>
-
-<!-- Hero Section -->
+<!-- Header -->
 <header>
-  <h1>Hello 👋 I'm Rakshit</h1>
-  <p>Creative Technologist | Coder | Animator</p>
+  <h1>Rakshit Rao</h1>
+  <p>Creative Technologist | Frontend Dev | Motion Designer</p>
 </header>
 
 <!-- Skills Section -->
 <section class="skills">
   <div class="card">
-    <h3>💻 Coding</h3>
-    <p>I build responsive websites and interactive apps using HTML, CSS, JavaScript, and frameworks like React.</p>
+    <h3>💻 Frontend Development</h3>
+    <p>Crafting responsive interfaces using HTML, CSS, JS & React.</p>
   </div>
   <div class="card">
-    <h3>🎥 Editing</h3>
-    <p>From reels to cinematic edits — I bring stories to life through motion and sound design.</p>
+    <h3>🎥 Video Editing</h3>
+    <p>Editing shorts, reels and vlogs with precision & storytelling.</p>
   </div>
   <div class="card">
-    <h3>🎬 Animation</h3>
-    <p>I create smooth animations using tools like After Effects, GSAP, and Lottie to make UIs more engaging.</p>
+    <h3>🌀 Motion Design</h3>
+    <p>Smooth animations using GSAP, After Effects and Lottie.</p>
   </div>
 </section>
 
 <!-- Projects Section -->
 <section class="projects">
-  <h2>Featured Work</h2>
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAAXNSR0IArs4c6QAA" alt="Portfolio Project">
-        <h4>My Portfolio Site</h4>
-      </div>
-      <div class="swiper-slide">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAAXNSR0IArs4c6QAA" alt="Animation Demo">
-        <h4>GSAP Animation Demo</h4>
-      </div>
-      <div class="swiper-slide">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAAXNSR0IArs4c6QAA" alt="Video Edit Sample">
-        <h4>Vlog Short Edit</h4>
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
+  <h2>Sample Projects</h2>
+  <div class="project-list">
+    <div class="project-card">Project Placeholder</div>
+    <div class="project-card">Project Placeholder</div>
+    <div class="project-card">Project Placeholder</div>
   </div>
 </section>
 
 <!-- Footer -->
 <footer>
-  Made by Rakshit | <a href="https://instagram.com/createdbyrakshit" target="_blank" style="color: #00ffc8;">@createdbyrakshit</a>
+  Built with ❤️ by Rakshit | @createdbyrakshit
 </footer>
-
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-<script>
-  // Only run Three.js after it's loaded
-  window.addEventListener("DOMContentLoaded", () => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg'), alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    const geometry = new THREE.SphereGeometry(0.5, 32, 32);
-    const material = new THREE.MeshStandardMaterial({ color: 0x00ffcc, roughness: 0.5, metalness: 0.5 });
-    const sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
-
-    const light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(2, 3, 4);
-    scene.add(light);
-
-    camera.position.z = 2;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      sphere.rotation.y += 0.005;
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-    });
-
-    // Animate cards
-    anime({
-      targets: '.card',
-      translateY: [30, 0],
-      opacity: [0, 1],
-      delay: anime.stagger(150),
-      duration: 1000,
-      easing: 'easeOutQuad'
-    });
-
-    // Swiper init
-    new Swiper('.swiper', {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 30,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2
-        },
-        1024: {
-          slidesPerView: 3
-        }
-      }
-    });
-  });
-</script>
 
 </body>
 </html>
